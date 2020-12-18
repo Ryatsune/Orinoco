@@ -1,0 +1,48 @@
+*, ::before, ::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* INDEX */
+header {
+    background: #f3e9f1;
+}
+
+header a img {
+    width: 120px;
+}
+
+.img-card {
+    width: 18rem!important;
+}
+
+.btn-pink {
+    background: #DFCDDC!important;
+}
+
+/* PRODUCT */
+
+.full-screen {
+    width: 100%;
+    height: 50vw;
+}
+
+.card-product>div>img {
+    width: 100%;
+}
+
+.ref-size {
+    font-size: 0.8rem;
+}
+
+/* BASKET */
+#txt-product-40 {
+    width: 40%;
+}
+
+/* fsklfskd,fkds,fk,sdf */
+
+.summary-img {
+    width: 190px;
+}
