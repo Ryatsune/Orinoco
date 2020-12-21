@@ -1,8 +1,3 @@
-//lire le local storage
-//add les valeurs du local storage
-//ajouter à la page
-
-
 //*********** Récupération des balises concernées dans cart.html ***********//
 let teddieName = document.querySelector('#teddie-name');
 // console.log(teddieName);
@@ -16,13 +11,13 @@ let emptySection = document.querySelector('#empty-cart');
 // console.log(emptySection);
 let paySection = document.querySelector('#pay-form');
 // console.log(paySection);
+const divItems = document.querySelector("#cart-items");
+// console.log(divItems);
 
 
-
-if (localStorage.getItem('cart')
-== undefined) {
+//affiche le bon block selon si le panier est vide ou non
+if (localStorage.getItem('cart') == undefined) {
     console.log("❌ Panier vide ");
-    
 } else {
     console.log("✅ Voici votre panier");
 
@@ -31,22 +26,36 @@ if (localStorage.getItem('cart')
 
     paySection.classList.remove("d-none");
     paySection.classList.add("d-block");
-
 }
-
 
 
 //*********** Récupération des données du localStorage ***********//
 //récupération de la key & value du localStorage --> stockées dans finalCart
-let finalCart = JSON.parse(localStorage.getItem('cart'));
+const finalCart = JSON.parse(localStorage.getItem('cart'));
 
 
 //********** Ajoute à la page les données récupérées de localStorage ***********//
-//boucle forEach pour répeter l'action pour chaque produits
-finalCart.forEach((info) => { 
-    teddieImage.src = info.imageUrl;
-    teddieName.innerHTML = `Lot d'un ourson ${info.name}`;
-    teddiePrice.innerHTML = `${info.price} €`
+//pour chaque article présent dans le localStorage
+//récupère les information & crée le contenu HTML
+finalCart.forEach(item => {
+
+    divItems.innerHTML += `
+                <div class="d-flex shadow p-3 mb-5 rounded">
+                    <img src="${item.imageUrl}" alt="" class="shadow sm-img">
+                    <div class="col-9 mt-5">
+
+                        <ul class="d-flex justify-content-around list-unstyled">
+                            <li>${item.name}</li>
+                            <li>couleur</li>
+                            <li>quantité pièces(s)</li>
+                            <li>${item.price} €</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <button class="btn btn-danger mt-5" id="trash-btn"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+                `; 
 });
 
 
