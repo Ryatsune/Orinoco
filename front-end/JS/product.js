@@ -90,7 +90,6 @@ product("http://localhost:3000/api/teddies").then((teddies) => {
 
 
 
-      
       //récupération du bouton ajouter au panier
       const addBtn = document.querySelector('#btn-send-cart')
 
@@ -100,22 +99,8 @@ product("http://localhost:3000/api/teddies").then((teddies) => {
 
       //au clic déclenche les fonctions addToNewCart & updateNewCart
       function btnSendCart() {
-     
-        addToNewCart();
-        
-        // updateNewCart();        
+        addToNewCart(); 
       }
-
-
-      //si je clique
-      //je veux que mon teddie soit push dans le tableau
-      //save le tableau
-      //envoi du tableau au localStorage
-      //si client add un nouveau teddie
-      //alors je veux une màj du tableau
-      //je veux que le teddie soit push dans le tableau après le premier teddie
-      //save le tableau
-      //envoi du tableau au localStorage
 
       
       //fonction push mon objet -> tableau & stock mon tableau dans le localStorage
@@ -123,6 +108,17 @@ product("http://localhost:3000/api/teddies").then((teddies) => {
 
         //variable cartUser contient les infos de teddie
         let cartUser = teddie;
+
+        // check if in localStorage
+        isInCart = false;
+        let cartArray = JSON.parse(localStorage.getItem('cart'));
+        if (cartArray) {               
+          for (let i = 0; i < cartArray.length; i++) {
+            if (cartUser._id == cartArray[i]._id) {
+              isInCart = true;
+            }
+          }
+        }
 
         //condition si le panier est vide
         if (localStorage.getItem('cart')
@@ -137,7 +133,7 @@ product("http://localhost:3000/api/teddies").then((teddies) => {
           //notifie l'utilisateur avec une alerte
           alert('Article ajouté au panier !');
         // } else if (cartUser == se trouve déjà dans mon tableau) {
-        } else if (JSON.parse(localStorage.getItem('cart')).includes(cartUser)) {
+        } else if (isInCart) {
           console.log("Etape 2 : Teddie déjà présent dans l'array");
           alert('Cet article a déjà été ajouté au panier');
         } else {
@@ -183,77 +179,3 @@ product("http://localhost:3000/api/teddies").then((teddies) => {
 //       //Le navigateur ne supporte pas localStorage
 //     //}
 //     //})
-
-
-
-
-
-
-
-
-
-
-
-
-
-// async function fetchGet(url) {
-//   let result = await fetch(url);
-//   return result.json();
-// }
-
-// let idParametre = window.location.search;  // récupération de l'ID
-// idParametre = idParametre.replace("?id=", "")
-// fetchGet("http://localhost:3000/api/teddies/"+idParametre).then((teddy) => {
-//   console.log(teddy);
-// });
-
-// //
-// // callback //
-// //
-
-// window.addEventListener("click", fonctionDeFin)
-
-
-// // V1 fct nommé 
-// function fonctionDeFin(returnValue) {
-//   console.log(returnValue)
-// }
-// window.setTimeout(fonctionDeFin, 1000)
-
-// //  V2 -> fonction anonyme
-// window.setTimeout(function (returnValue) {
-//   console.log(returnValue)
-// }, 1000)
-
-// // V3 -> arrow function
-// window.setTimeout((returnValue) => {
-//   console.log(returnValue)
-// }, 1000)
-
-// //
-// // Promesse //
-// //
-// const promise1 = new Promise((resolve, reject) => {
-//   if (true) { // gestion des errors
-//     reject('Tout va MALLLLLLL')
-//   }
-//   setTimeout(() => {
-//     resolve('Tout va bien');
-//   }, 300);
-// });
-
-// promise1.then((value) => {
-//   console.log(value);
-//   // expected output: "Tout va bien"
-// });
-
-// promise1.catch((valueError) => {
-//   console.error(valueError);
-// });
-
-// console.log(promise1);
-// // expected output: [object Promise]
-
-
-
-
