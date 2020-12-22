@@ -1,7 +1,7 @@
 const toggler = document.querySelector('.navbar-toggler');
-console.log(toggler);
+// console.log(toggler);
 const content = document.querySelector('#navbarSupportedContent');
-console.log(content);
+// console.log(content);
 
 
 toggler.addEventListener("click", function () {
