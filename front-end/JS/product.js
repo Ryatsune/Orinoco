@@ -1,25 +1,8 @@
 let idParametre = window.location.search;  // récupération de l'ID
-//   // console.log(idParametre);                  // ?id=5be9c8541c9d440000665243
-  
-//   // if (idParametre === '?id=5be9c8541c9d440000665243') {
-//     //   console.log('ourson 1');
-//     // } else if (idParametre === '?id=5beaa8bf1c9d440000a57d94') {
-//       //   console.log('ourson 2');
-//       // } else if (idParametre === '?id=5beaaa8f1c9d440000a57d95') {
-//         //   console.log('ourson 3');
-//         // } else if (idParametre === '?id=5beaabe91c9d440000a57d96') {
-//           //   console.log('ourson 4');
-//           // } else if (idParametre === '?id=5beaacd41c9d440000a57d97') {
-//             //   console.log('ourson 5');
-// // }
-
 
 // ///////////////////////////////////////////////////////
 // ///////////////////////// New /////////////////////////
 // ///////////////////////////////////////////////////////
-
-
-const bearSection = document.getElementById("bear-section");
 
 async function product(url) {
   let result = await fetch(url);
@@ -34,68 +17,18 @@ product("http://localhost:3000/api/teddies").then((teddies) => {
   teddies.forEach((teddie) => {
     //console.log(teddie);
 
-    
     //pour chaque teddie compare l'id avec idParametre récupéré dans l'Url
     if ('?id=' + teddie._id === idParametre) {
 
-      //création du contenu HTML
-      bearSection.innerHTML += `
-
-                      <div class="p-4"> 
-                        <h1 class="card-name text-center mb-5">${teddie.name}</h1>
-                        <hr>
-                        <!-- ===== Block img & description ===== -->
-                        <div>
-                          <img class="card-img mb-5" src="${teddie.imageUrl}" alt="photo de l'ours">
-                        
-                          <p class="card-description">${teddie.description}</p>
-                        </div>
-                        <hr>
-                        <!-- ===== END Block img & description ===== -->
-                        <!-- ===== Block color & quantity ===== -->
-                        <div class="d-flex flex-wrap col-12 mt-4">
-                          <div class="d-flex col-12 col-md-6 mb-3">
-                            <label for="color" class="mr-3">Couleur</label>
-                            <select name="color" class="form-control col-8 col-md-6" id="select-color"></select>
-                          </div>
-                          <div class="d-flex col-12 col-md-6 form-group">
-                            <label for="example-number-input" class="mr-3">Quantité</label>
-                            <input class="col-7 col-md-6 form-control" type="number" value="1" min="1" max="10" id="example-number-input">
-                          </div>
-                        </div>
-                        <!-- ===== END Block color & quantity ===== -->
-                        <!-- ===== Block stock ===== -->
-                        <p class="text-success font-italic m-3">En stock</p>
-                        <!-- ===== END Block stock ===== -->
-                        <!-- ===== Block price & add button ===== -->
-                        <div class="d-flex flex-wrap mt-3">
-                          <p class="font-weight-bolder col-12 col-md-8">${teddie.price} € </p>
-                          <div class="d-flex flex-wrap col-12 col-md-4">
-                            <button class="btn btn-success" id="btn-send-cart">Ajouter au panier</button>
-                        </div>
-                        <!-- ===== END price & add button ===== -->
-                      </div>
-                    </div>
-      `
-
-      //***** Récupération du select via ID et stockage dans const *****//
-      const selectColor = document.querySelector("#select-color");
-
-      //***** Boucle forEach pour chaque couleur selon le teddie *****//
-      teddie.colors.forEach(color => {
-        selectColor.innerHTML += `
-          <option value="${color}">${color}</option>
-        `
-      });
-
-
+      let teddieObject = new Teddie(teddie);
+      teddieObject.createDomProductPage();
+      teddieObject.handleTeddyColors();
 
       //récupération du bouton ajouter au panier
       const addBtn = document.querySelector('#btn-send-cart')
 
       //écoute de l'évènement au click sur le bouton
       addBtn.addEventListener('click', btnSendCart);
-      
 
       //au clic déclenche les fonctions addToNewCart & updateNewCart
       function btnSendCart() {
@@ -120,29 +53,38 @@ product("http://localhost:3000/api/teddies").then((teddies) => {
           }
         }
 
+
+        const quantity = document.querySelector('#quantity-input');
+        const color = document.querySelector("#select-color").options[document.querySelector("#select-color").selectedIndex];
+
         //condition si le panier est vide
-        if (localStorage.getItem('cart')
-        == undefined) {
+        if (localStorage.getItem('cart') == undefined) {
           //créer un tableau
           const newCart = [];
+          //ajoute la quantité & la couleur choisie à l'objet
+          cartUser.quantity = quantity.value;
+          cartUser.color = color.text;    
           //ajoute cartUser dans le tableau newCart
           newCart.push(cartUser);
           //envoi le tableau newCart au localStorage 
-          localStorage.setItem("cart", JSON.stringify(newCart));
+          localStorage.setItem('cart', JSON.stringify(newCart));
           console.log("Etape 1 : Array crée et teddie ajouté");
           //notifie l'utilisateur avec une alerte
           alert('Article ajouté au panier !');
-        // } else if (cartUser == se trouve déjà dans mon tableau) {
         } else if (isInCart) {
           console.log("Etape 2 : Teddie déjà présent dans l'array");
           alert('Cet article a déjà été ajouté au panier');
         } else {
           //récupération de la key & value du localStorage --> stockées dans finalCart
           let finalCart = JSON.parse(localStorage.getItem('cart'));
+          console.log(finalCart);
+          //ajoute la quantité & la couleur choisie à l'objet
+          cartUser.quantity = quantity.value;
+          cartUser.color = color.text;      
           //ajoute cartUser dans le tableau finalCart
           finalCart.push(cartUser);
           //envoi le tableau newCart au localStorage 
-          localStorage.setItem("cart", JSON.stringify(finalCart));
+          localStorage.setItem('cart', JSON.stringify(finalCart));
           console.log("Etape 3 : Ajout du nouveau teddie à l'array");
           //notifie l'utilisateur avec une alerte
           alert('Article ajouté au panier !');
