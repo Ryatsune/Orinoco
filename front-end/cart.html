@@ -54,7 +54,7 @@
 
             <h2 class="h4 my-4 text-center">PAIEMENT SECURISÉ</h2>
 
-            <form action="" class="d-flex flex-wrap needs-validation">
+            <form action="POST" class="d-flex flex-wrap needs-validation">
 
                 <!-- ********* LEFT PANEL ********* -->
                 <div class="col-12 col-lg-7 border-top border-secondary pt-3 mx-auto">
@@ -64,7 +64,7 @@
                         <p class="font-weight-bold">Adresse de livraison</p>
                         <div class="d-flex flex-wrap mb-3">
                             <!-- <label for="name">Nom :</label> -->
-                            <input type="text" name="name" id="name" placeholder="Nom*" class="form-control col-12 col-lg-4 p-1 mr-3 mb-3">
+                            <input type="text" name="name" id="name" placeholder="Nom*" class="form-control col-12 col-lg-4 p-1 mr-3 mb-3" required>
                             <!-- <label for="firstname">Prénom :</label> -->
                             <input type="text" name="firstname" id="firstname" placeholder="Prénom*" class="form-control col-12 col-lg-4 p-1" required>
                         </div>
@@ -78,28 +78,26 @@
                             <!-- <label for="city">Ville :</label> -->
                             <input type="text" name="city" id="city" placeholder="Ville*" class="form-control col-12 col-lg-4 p-1 mr-3 mb-3" required>
                             <!-- <label for="postal">Code postal :</label> -->
-                            <input type="text" name="postal" id="postal" placeholder="Code postal" class="form-control col-5 col-lg-4 p-1 mr-3"> 
+                            <!-- <input type="text" name="postal" id="postal" placeholder="Code postal" class="form-control col-5 col-lg-4 p-1 mr-3">  -->
                 <!-- non demandé -->
-                            <select name="country" id="country" class="form-control col-6 col-lg-3 p-1">
+                            <!-- <select name="country" id="country" class="form-control col-6 col-lg-3 p-1">
                                 <option value="france">France</option>
                                 <option value="france">Belgique</option>
                                 <option value="france">Luxembourg</option>
                                 <option value="france">Suisse</option>
-                            </select>
-                <!-- non demandé -->
+                            </select> -->
                         </div>
-
+                        
                         <div class="d-flex flex-wrap mb-3">
                             <!-- <label for="mail">Adresse mail :</label> -->
                             <input type="email" name="mail" id="mail" placeholder="Email*" class="form-control col-12 col-lg-4 p-1 mr-3 mb-3" required>
                             <!-- <label for="phone">N° de téléphone :</label> -->
-                            <input type="tel" name="phone" id="phone" placeholder="N° de téléphone" class="form-control col-12 col-lg-4 p-1">
-                <!-- non demandé -->
+                            <!-- <input type="tel" name="phone" id="phone" placeholder="N° de téléphone" class="form-control col-12 col-lg-4 p-1"> -->
+
                         </div>
-                        
                     </div>
                         <!-- CARD INFO BLOCK -->
-                    <div class="pay-info my-3">
+                    <!-- <div class="pay-info my-3">
                         <p class="font-weight-bold">Paiement</p>
                         <div class="d-flex">
                             <div class="form-check">
@@ -115,10 +113,10 @@
                                 <label class="form-check-label" for="amex">American Express</label>
                             </div>
                         </div>
-                        <input type="text" name="card-num" id="card-num" placeholder="Numéro de carte*" class="form-control form-control pl-2 my-3 -lg-5" required>
+                        <input type="text" name="card-num" id="card-num" placeholder="Numéro de carte*" class="form-control form-control pl-2 my-3 -lg-5" required> -->
                             
                         <!-- EXPIRATION -->
-                        <div class="d-flex">
+                        <!-- <div class="d-flex">
                             <select class="form-control form-control-sm col-lg-2 mb-3" id="month" required>
                                 <option>01</option>
                                 <option>02</option>
@@ -149,7 +147,7 @@
                             </select>
                         </div>
                         <input type="text" pattern="[0-9]{,3}" name="cvv" id="cvv" placeholder="Cvv*" class="form-control pl-2 col-lg-2" required>
-                    </div>
+                    </div> -->
         
                     <div class="mb-4">
                         <p class="font-weight-bold">Adresse de facturation</p>
@@ -181,6 +179,7 @@
 
     <script src="./JS/navbar.js"></script>
     <script src="./JS/cart.js"></script>
+    <script src="./JS/order.js"></script>
     <script defer="" src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
 
 </body>
