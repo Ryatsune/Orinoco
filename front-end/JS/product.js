@@ -15,7 +15,6 @@ product("http://localhost:3000/api/teddies").then((teddies) => {
 
   //boucle forEach pour répeter l'action autant qu'il y a de produits
   teddies.forEach((teddie) => {
-    //console.log(teddie);
 
     //pour chaque teddie compare l'id avec idParametre récupéré dans l'Url
     if ('?id=' + teddie._id === idParametre) {
@@ -70,7 +69,7 @@ product("http://localhost:3000/api/teddies").then((teddies) => {
           localStorage.setItem('cart', JSON.stringify(newCart));
           console.log("Etape 1 : Array crée et teddie ajouté");
           //notifie l'utilisateur avec une alerte
-          alert('Article ajouté au panier !');
+          alert('Panier crée et article ajouté au panier !');
         } else if (isInCart) {
           console.log("Etape 2 : Teddie déjà présent dans l'array");
           alert('Cet article a déjà été ajouté au panier');
@@ -93,31 +92,3 @@ product("http://localhost:3000/api/teddies").then((teddies) => {
     }
   });
 });
-
-
-// //Add un article au localStorage
-//     //localStorage.setItem('clé', 'valeur');
-
-// //Lecture de l'article localStorage
-//     //sessionStorage.getItem('clé');
-
-// //Suppression de l'élément localStorage
-//     //localStorage.removeItem('clé');
-
-// //Suppression de tous les éléments de localStorage
-//     //localStorage.clear();
-
-// //Add array localStorage
-//     //let colors = ["red", "blue", "green"];
-//     //localStorage.setItem("my_colors", JSON.stringify(colors));
-
-// //lecture d'un tableau localStorage
-//     //JSON.parse(localStorage.getItem(my_colors));
-
-// //Vérifier le localStorage
-//     //if(typeof(Storage !== "undefined") {
-//       //Code pour localStorage
-//     //} else {
-//       //Le navigateur ne supporte pas localStorage
-//     //}
-//     //})
