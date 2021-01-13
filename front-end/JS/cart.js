@@ -40,8 +40,12 @@ const finalCart = JSON.parse(localStorage.getItem('cart'));
 finalCart.forEach(item => {
 
     divItems.innerHTML += `
-                <div class="d-flex shadow p-3 mb-5 rounded">
-                    <img src="${item.imageUrl}" alt="" class="shadow sm-img">
+                <div class="shadow p-3 mb-5 rounded" id="${item._id}">
+                    <div class="d-flex flex-row-reverse">
+                        <button class="btn btn-danger btn-sm trash-btn" id="${item._id}"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="d-flex flex-wrap text-center">
+                        <img src="${item.imageUrl}" alt="" class="shadow sm-img">
                     <div class="col-9 mt-5">
 
                         <ul class="d-flex justify-content-around list-unstyled">
