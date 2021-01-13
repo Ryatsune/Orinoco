@@ -1,18 +1,7 @@
 //*********** Récupération des balises concernées dans cart.html ***********//
-let teddieName = document.querySelector('#teddie-name');
-// console.log(teddieName);
-let teddieImage = document.querySelector('#teddie-img');
-// console.log(teddieImage);
-let teddiePrice = document.querySelector('#teddie-price');
-// console.log(teddiePrice);
-let trashBtn = document.querySelector('#trash-btn');
-// console.log(trashBtn);
 let emptySection = document.querySelector('#empty-cart');
-// console.log(emptySection);
 let paySection = document.querySelector('#pay-form');
-// console.log(paySection);
 const divItems = document.querySelector("#cart-items");
-// console.log(divItems);
 
 
 //affiche le bon block selon si le panier est vide ou non
@@ -46,30 +35,80 @@ finalCart.forEach(item => {
                     </div>
                     <div class="d-flex flex-wrap text-center">
                         <img src="${item.imageUrl}" alt="" class="shadow sm-img">
-                    <div class="col-9 mt-5">
-
-                        <ul class="d-flex justify-content-around list-unstyled">
-                            <li>${item.name}</li>
-                            <li>couleur</li>
-                            <li>quantité pièces(s)</li>
-                            <li>${item.price} €</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <button class="btn btn-danger mt-5" id="trash-btn"><i class="fas fa-times"></i></button>
+                        <div class="mt-4 col-md-9">
+                            <ul class="d-flex flex-wrap justify-content-around list-unstyled">
+                                <li class="col-12 col-md-auto pr-0">${item.name}</li>
+                                <li class="col-12 col-md-auto pr-0">${item.color}</li>
+                                <li class="col-12 col-md-auto pr-0">${item.price} € (unité)</li>
+                                <li class="col-12 col-md-auto pr-0">${item.quantity} pièces(s)</li>
+                                <li class="col-12 col-md-auto pr-0 cart-price">${item.quantity * item.price}</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                `; 
+                `;
 });
 
 
+//récupère les prix de chaque item & les additionne pour afficher le total
+function addition() {
+    //récupération des li contenant les prix de chaque item
+    let allPrices = document.querySelectorAll('.cart-price');
+    //tableau vide
+    let price = [];
+    //boucle permettant de récupérer toutes les valeurs et les push dans le tableau
+    for (let i = 0; i < allPrices.length; i++) {
+        price.push(allPrices[i].innerHTML);
+    }
+    //converti les strings en number et les additionne
+    const reducer = (accumulator, currentValue) => Number(accumulator) + Number(currentValue);
+    divItems.innerHTML += `
+                    <hr>
+                    <div>
+                        <ul class="d-flex justify-content-around list-unstyled">
+                            <li class="font-weight-bolder">MONTANT TOTAL : </li>
+                            <li class="font-weight-bolder">${price.reduce(reducer)} €</li>
+                        </ul>
+                    </div>
+                    <hr>
+                    `;
+}
+addition();
+                
+
 //********** Supprime les articles du panier ***********//
+function removeElement() {
+    const trashBtn = document.querySelectorAll('button.trash-btn');
+    //boucle permettant la suppression de la div au clic sur le bouton (de cette même div)
+    for (let i = 0; i < trashBtn.length; i++) {
+        trashBtn[i].addEventListener('click', function (e) {
+            e.currentTarget.parentNode.parentNode.remove();
+            let idTrash = trashBtn[i].id;
+            removeElementFromCart(idTrash);
+        }, false);
+    }
+}
+removeElement();
 
-
-// function name(params) {
+function removeElementFromCart(id) {
     
-//     suppriDOM()
+    //récupération de mon panier dans le localStorage
+    let updateCart = JSON.parse(localStorage.getItem('cart'));
 
-//      suppriLocalStorage()
-     
-// }
+    //boucle qui selon la longueur de mon tableau 
+    //compare si l'id de ma div est identique à l'id de mon objet
+    //supprime la div si true ou supprime la key si le tableau est vide
+    for (let i = 0; i < updateCart.length; i++) {
+        if (id == updateCart[i]._id) {
+            updateCart.splice(i, 1);
+        }
+    }
+
+    //push le tableau mis à jour dans le localStorage
+    localStorage.setItem('cart', JSON.stringify(updateCart));
+
+    if (updateCart.length === 0) {
+        localStorage.removeItem('cart');
+        window.location.reload();
+    }
+}
