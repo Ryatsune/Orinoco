@@ -22,7 +22,6 @@ header a img {
 }
 
 /* PRODUCT */
-
 .full-screen {
     width: 100%;
     height: 50vw;
@@ -36,18 +35,14 @@ header a img {
     font-size: 0.8rem;
 }
 
-/* BASKET */
+/* CART */
 #txt-product-40 {
     width: 40%;
 }
 
-/* fsklfskd,fkds,fk,sdf */
-
 .summary-img {
     width: 190px;
 }
-
-/* ESSAI PAGE CART */
 
 .sm-img {
     width: 128px;
