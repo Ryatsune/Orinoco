@@ -80,6 +80,7 @@ function removeElement() {
             e.currentTarget.parentNode.parentNode.remove();
             let idTrash = trashBtn[i].id;
             removeElementFromCart(idTrash);
+            document.location.reload();
         }, false);
     }
 }
