@@ -1,8 +1,6 @@
-//*********** Récupération des balises concernées dans cart.html ***********//
 let emptySection = document.querySelector('#empty-cart');
 let paySection = document.querySelector('#pay-form');
 const divItems = document.querySelector("#cart-items");
-
 
 //affiche le bon block selon si le panier est vide ou non
 if (localStorage.getItem('cart') == undefined) {
@@ -48,7 +46,7 @@ function buildTeddieCards() {
 buildTeddieCards();
 
 
-//récupère les prix de chaque item & les additionne pour afficher le total
+//********** Récupère les prix de chaque item & les additionne pour afficher le total  ***********//
 function addition() {
     //récupération des li contenant les prix de chaque item
     let allPrices = document.querySelectorAll('.cart-price');
@@ -71,10 +69,9 @@ function addition() {
                     <hr>
                     `;
 }
-addition();
-                
+addition();     
 
-//********** Supprime les articles du panier ***********//
+//********** Supprime les articles du DOM ***********//
 function removeElement() {
     const trashBtn = document.querySelectorAll('button.trash-btn');
     //boucle permettant la suppression de la div au clic sur le bouton (de cette même div)
@@ -88,6 +85,7 @@ function removeElement() {
 }
 removeElement();
 
+//********** Supprime les articles du panier ***********//
 function removeElementFromCart(id) {
     
     //récupération de mon panier dans le localStorage
