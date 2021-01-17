@@ -49,4 +49,15 @@ class Teddie {
         </div>
       `
   }
+
+  handleTeddyColors() {
+    const selectColor = document.querySelector("#select-color");
+
+    //boucle pour chaque couleur du teddie & crée le contenu HTML pour l'afficher
+    this.colors.forEach(color => {
+      selectColor.innerHTML += `
+        <option value="${color}" id="option-color">${color}</option>
+      `
+    });
+  }
 }
