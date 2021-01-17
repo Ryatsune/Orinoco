@@ -17,37 +17,35 @@ if (localStorage.getItem('cart') == undefined) {
     paySection.classList.add("d-block");
 }
 
-
-//*********** Récupération des données du localStorage ***********//
-//récupération de la key & value du localStorage --> stockées dans finalCart
-const finalCart = JSON.parse(localStorage.getItem('cart'));
-
-
-//********** Ajoute à la page les données récupérées de localStorage ***********//
-//pour chaque article présent dans le localStorage
-//récupère les information & crée le contenu HTML
-finalCart.forEach(item => {
-
-    divItems.innerHTML += `
-                <div class="shadow p-3 mb-5 rounded" id="${item._id}">
-                    <div class="d-flex flex-row-reverse">
-                        <button class="btn btn-danger btn-sm trash-btn" id="${item._id}"><i class="fas fa-times"></i></button>
-                    </div>
-                    <div class="d-flex flex-wrap text-center">
-                        <img src="${item.imageUrl}" alt="" class="shadow sm-img">
-                        <div class="mt-4 col-md-9">
-                            <ul class="d-flex flex-wrap justify-content-around list-unstyled">
-                                <li class="col-12 col-md-auto pr-0">${item.name}</li>
-                                <li class="col-12 col-md-auto pr-0">${item.color}</li>
-                                <li class="col-12 col-md-auto pr-0">${item.price} € (unité)</li>
-                                <li class="col-12 col-md-auto pr-0">${item.quantity} pièces(s)</li>
-                                <li class="col-12 col-md-auto pr-0 cart-price">${item.quantity * item.price}</li>
-                            </ul>
+function buildTeddieCards() {
+    //récupération de la key & value du localStorage --> stockées dans finalCart
+    const finalCart = JSON.parse(localStorage.getItem('cart'));
+    
+    //pour chaque article présent dans le localStorage
+    //récupère les information & crée le contenu HTML
+    finalCart.forEach(item => {
+        divItems.innerHTML += `
+                    <div class="shadow p-3 mb-5 rounded" id="${item._id}">
+                        <div class="d-flex flex-row-reverse">
+                            <button class="btn btn-danger btn-sm trash-btn" id="${item._id}"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="d-flex flex-wrap text-center">
+                            <img src="${item.imageUrl}" alt="" class="shadow sm-img">
+                            <div class="mt-4 col-md-9">
+                                <ul class="d-flex flex-wrap justify-content-around list-unstyled">
+                                    <li class="col-12 col-md-auto pr-0">${item.name}</li>
+                                    <li class="col-12 col-md-auto pr-0">${item.color}</li>
+                                    <li class="col-12 col-md-auto pr-0">${item.price} € (unité)</li>
+                                    <li class="col-12 col-md-auto pr-0">${item.quantity} pièces(s)</li>
+                                    <li class="col-12 col-md-auto pr-0 cart-price">${item.quantity * item.price}</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                `;
-});
+                    `;
+    });   
+}
+buildTeddieCards();
 
 
 //récupère les prix de chaque item & les additionne pour afficher le total
