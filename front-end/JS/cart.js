@@ -50,7 +50,6 @@ buildTeddieCards();
 function addition() {
     //récupération des li contenant les prix de chaque item
     let allPrices = document.querySelectorAll('.cart-price');
-    //tableau vide
     let price = [];
     //boucle permettant de récupérer toutes les valeurs et les push dans le tableau
     for (let i = 0; i < allPrices.length; i++) {
@@ -68,6 +67,7 @@ function addition() {
                     </div>
                     <hr>
                     `;
+    localStorage.setItem('finalPrice', price.reduce(reducer));
 }
 addition();     
 
