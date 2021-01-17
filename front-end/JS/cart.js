@@ -104,6 +104,7 @@ function removeElementFromCart(id) {
     //push le tableau mis à jour dans le localStorage
     localStorage.setItem('cart', JSON.stringify(updateCart));
 
+    //supprime la key cart si il est vide et recharge la page
     if (updateCart.length === 0) {
         localStorage.removeItem('cart');
         window.location.reload();
