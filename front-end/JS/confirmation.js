@@ -9,3 +9,12 @@ function displayPriceFromStorage(params) {
     spanPrice.innerHTML = finalPrice + '€';
 }
 displayPriceFromStorage();
+
+//récupère l'orderId du localStorage et la span 
+//puis fill la span avec l'orderNum
+function displayOrderIdFromStorage(params) {
+    let orderNum = localStorage.getItem('orderNum');
+    let spanOrder = document.querySelector('#order-confirmation');
+    spanOrder.innerHTML = orderNum;
+}
+displayOrderIdFromStorage();
