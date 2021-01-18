@@ -41,51 +41,42 @@
     </header>
 
     <main class="container my-4">
+
+        <!-- EMPTY CART BLOCK -->
         <section class="d-block" id="empty-cart">
             <h1 class="mt-5 pt-5 text-center">🛑 Votre panier est vide...</h1>
             <hr>
         </section>
 
+        <!-- CART & FORM BLOCK -->
         <section class="d-none mt-5 pt-5" id="pay-form">
+            <!-- CART CARD -->
             <article class="d-flex flex-column" id="cart-items">
 
             </article>
 
             <h2 class="h4 my-4 text-center">PAIEMENT SECURISÉ</h2>
 
-            <form action="http://localhost:3000/api/teddies/order" method="POST" class="d-flex flex-wrap needs-validation">
+            <!-- CART FORM -->
+            <form action="http://localhost:3000/api/teddies/order" method="POST" class="d-flex flex-wrap needs-validation" id="form">
                 <div class="col-12 col-lg-7 border-top border-secondary pt-3 mx-auto">
                     <!-- PERSONNAL INFO BLOCK -->
                     <div class="perso-info">
                         <p class="font-weight-bold">Adresse de livraison</p>
                         <div class="d-flex flex-wrap mb-3">
-                            <!-- <label for="name">Nom :</label> -->
                             <input type="text" name="name" id="name" placeholder="Nom*" class="form-control col-12 col-lg-4 p-1 mr-3 mb-3" required>
-                            <!-- <label for="firstname">Prénom :</label> -->
                             <input type="text" name="firstname" id="firstname" placeholder="Prénom*" class="form-control col-12 col-lg-4 p-1" required>
                         </div>
 
                         <div class="mb-3">
-                            <!-- <label for="adress">Adresse :</label> -->
                             <input type="text" name="address" id="address" placeholder="Adresse complète*" class="form-control col-lg-12 p-1" required>
                         </div>
                         
                         <div class="d-flex flex-wrap mb-3">
-                            <!-- <label for="city">Ville :</label> -->
                             <input type="text" name="city" id="city" placeholder="Ville*" class="form-control col-12 col-lg-4 p-1 mr-3 mb-3" required>
-                            <!-- <label for="postal">Code postal :</label> -->
-                            <!-- <input type="text" name="postal" id="postal" placeholder="Code postal" class="form-control col-5 col-lg-4 p-1 mr-3">  -->
-                
-                            <!-- <select name="country" id="country" class="form-control col-6 col-lg-3 p-1">
-                                <option value="france">France</option>
-                                <option value="france">Belgique</option>
-                                <option value="france">Luxembourg</option>
-                                <option value="france">Suisse</option>
-                            </select> -->
                         </div>
                         
                         <div class="d-flex flex-wrap mb-3">
-                            <!-- <label for="mail">Adresse mail :</label> -->
                             <input type="email" name="email" id="email" placeholder="Email*" class="form-control col-12 col-lg-4 p-1 mr-3 mb-3" required>
                         </div>
                     </div>
