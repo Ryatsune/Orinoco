@@ -1,15 +1,10 @@
 //récupération de ma balise section
 const objectApi = document.getElementById("bear-cards");
 
-//attend la réponse de la requête à l'API et retourne le résultat au format json
-async function ajaxGet(url) {
-  let result = await fetch(url);
-  return result.json();
-}
-
 //pour chaque teddie de l'API
 //crée le contenu HTML pour afficher des cards
 //contenant les informations de l'API
+
 function displayTeddies(url) {
   //utilisation de l'API fetch
   ajaxGet(url).then((teddies) => {

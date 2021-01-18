@@ -1,10 +1,5 @@
 let idParametre = window.location.search;  // récupération de l'ID
 
-async function ajaxGet(url) {
-  let result = await fetch(url);
-  return result.json();
-}
-
 //appel à l'API fetch avec en callback l'API des teddies
 //si resolve alors .then s'execute
 ajaxGet("http://localhost:3000/api/teddies").then((teddies) => {
