@@ -12,7 +12,7 @@ function displayTeddies(url) {
     teddies.forEach((teddie) => {
       let link = document.createElement("a");
       link.id = "lien";
-      link.href = "product.html?id=" + teddie._id;
+      link.href = "./pages/product.html?id=" + teddie._id;
       link.textContent = "fiche du produit";
       
       objectApi.innerHTML += `

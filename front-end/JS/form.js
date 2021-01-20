@@ -50,7 +50,7 @@ formSubmit.addEventListener('submit', function logDatas(e) {
         //ajoute au localStorage la key orderId et la valeur de la variable précédemment crée
         localStorage.setItem('orderNum', orderId);
         //renvoi ver la page de confirmation de commande
-        window.location.href='confirmation.html';
+        window.location.href='./confirmation.html';
     })
     .catch(error => alert("Erreur : " + error));
 })
